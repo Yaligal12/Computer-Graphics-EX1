@@ -1,0 +1,4 @@
+*.jpg
+images
+__pycache__
+__MACOSX
