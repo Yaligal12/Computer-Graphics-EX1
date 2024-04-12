@@ -73,10 +73,6 @@ class SeamImage:
             Use NumpyPy vectorized matrix multiplication for high performance.
             To prevent outlier values in the boundaries, we recommend to pad them with 0.5
         """
-        # padding_width = ((1, 1), (1, 1), (0, 0))
-        # padded_image = np.pad(
-        #     np_img @ self.gs_weights, pad_width=padding_width, mode='constant', constant_values=0.5)
-        # return padded_image.squeeze()
         return (np_img @ self.gs_weights).squeeze()
 
     # @NI_decor
@@ -91,11 +87,6 @@ class SeamImage:
             - keep in mind that values must be in range [0,1]
             - np.gradient or other off-the-shelf tools are NOT allowed, however feel free to compare yourself to them
         """
-        # grad = np.zeros_like(self.gs)
-        # for i in range(1, self.gs.shape[0]):
-        #     for j in range(1, self.gs.shape[1]):
-        #         grad[i, j] = self.calc_gradient((i, j))
-        # return grad.squeeze()
         gs_gradient_x = np.subtract(self.resized_gs[:, :], np.roll(
             self.resized_gs[:, :], -1, axis=1))
         gs_gradient_y = np.subtract(self.resized_gs[:, :], np.roll(
